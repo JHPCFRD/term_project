@@ -28,3 +28,15 @@ app.post('/recipes', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+app.delete('/recipes/:id', (req, res) => {
+  const id = parseInt(req.params.id);
+  const initialLength = recipes.length;
+  recipes = recipes.filter(recipe => recipe.id !== id);
+  
+  if (recipes.length < initialLength) {
+    res.json({ message: 'Recipe deleted successfully' });
+  } else {
+    res.status(404).json({ error: 'Recipe not found' });
+  }
+});

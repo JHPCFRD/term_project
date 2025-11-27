@@ -36,3 +36,48 @@
     transform: rotate(360deg);
   }
 }
+
+.main-nav {
+  margin-top: 20px;
+}
+
+.recipe-form-container {
+  margin-top: 40px;
+  border: 1px solid white;
+  padding: 20px;
+}
+
+.form-input {
+  margin: 5px;
+  padding: 5px;
+  display: block;
+}
+
+.submit-button {
+  margin: 5px;
+  padding: 5px;
+}
+
+.recipes-container {
+  margin-top: 40px;
+}
+
+.recipe-card {
+  border: 1px solid white;
+  padding: 10px;
+  margin: 10px;
+}
+
+.delete-button {
+  background: red;
+  color: white;
+  padding: 5px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: darkred;
+}
