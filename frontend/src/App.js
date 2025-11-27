@@ -23,11 +23,11 @@ function App() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newRecipe)
     })
-    .then(response => response.json())
-    .then(data => {
-      setNewRecipe({ title: '', ingredients: '', instructions: '' });
-      fetchRecipes();
-    });
+      .then(response => response.json())
+      .then(data => {
+        setNewRecipe({ title: '', ingredients: '', instructions: '' });
+        fetchRecipes();
+      });
   };
 
   const handleChange = (e) => {
@@ -38,10 +38,10 @@ function App() {
     fetch(`http://localhost:5000/recipes/${id}`, {
       method: 'DELETE'
     })
-    .then(response => response.json())
-    .then(data => {
-      fetchRecipes();
-    });
+      .then(response => response.json())
+      .then(data => {
+        fetchRecipes();
+      });
   };
 
   return (
@@ -49,39 +49,41 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>RecipeShare</h1>
+        {/*
         <nav className="main-nav">
           <a className="App-link" href="/search">Search</a>
           <a className="App-link" href="/categories">Categories</a>
           <a className="App-link" href="/about">About</a>
           <a className="App-link" href="/login">Login</a>
         </nav>
-        
+  */}   {/*Commented for now, will implement later*/}
+  
         <div className="recipe-form-container">
           <h3>Add New Recipe</h3>
           <form onSubmit={handleSubmit}>
-            <input 
-              type="text" 
-              name="title" 
-              placeholder="Recipe Title" 
-              value={newRecipe.title} 
+            <input
+              type="text"
+              name="title"
+              placeholder="Recipe Title"
+              value={newRecipe.title}
               onChange={handleChange}
               className="form-input"
               required
             />
-            <input 
-              type="text" 
-              name="ingredients" 
-              placeholder="Ingredients" 
-              value={newRecipe.ingredients} 
+            <input
+              type="text"
+              name="ingredients"
+              placeholder="Ingredients"
+              value={newRecipe.ingredients}
               onChange={handleChange}
               className="form-input"
               required
             />
-            <input 
-              type="text" 
-              name="instructions" 
-              placeholder="Instructions" 
-              value={newRecipe.instructions} 
+            <input
+              type="text"
+              name="instructions"
+              placeholder="Instructions"
+              value={newRecipe.instructions}
               onChange={handleChange}
               className="form-input"
               required
@@ -99,9 +101,8 @@ function App() {
               <h3>{recipe.title}</h3>
               <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
               <p><strong>Instructions:</strong> {recipe.instructions}</p>
-              <button 
+              <button
                 onClick={() => handleDelete(recipe.id)}
-                className="delete-button"
               >
                 Delete
               </button>

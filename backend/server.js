@@ -6,11 +6,6 @@ const PORT = 5000;
 app.use(cors());
 app.use(express.json());
 
-let recipes = [
-  { id: 1, title: 'Pancakes', ingredients: 'Flour, Eggs, Milk', instructions: 'Mix and cook' },
-  { id: 2, title: 'Omelette', ingredients: 'Eggs, Cheese, Ham', instructions: 'Beat eggs and cook' }
-];
-
 app.get('/', (req, res) => {
   res.json({ message: 'RecipeShare API is working!' });
 });
