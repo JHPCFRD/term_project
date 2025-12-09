@@ -17,7 +17,7 @@ function Login({ onLogin, onLogout, isLoggedIn }) {
   if (isLoggedIn) {
     return (
       <div className="login-container">
-        <p>Welcome, Chef! 🍳</p>
+        <p>Welcome!</p>
         <button onClick={onLogout} className="logout-button">
           Logout
         </button>
@@ -43,7 +43,6 @@ function Login({ onLogin, onLogout, isLoggedIn }) {
           Login
         </button>
       </form>
-      <p className="login-note">Mock login: any credentials work</p>
     </div>
   );
 }

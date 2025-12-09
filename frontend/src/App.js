@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Login from './components/Login';
 
@@ -107,7 +106,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <h1>RecipeShare</h1>
 
         <Login 
@@ -116,9 +114,11 @@ function App() {
           isLoggedIn={loggedIn}
         />
 
-        <div style={{ margin: '20px', fontStyle: 'italic' }}>
-          "{quote}"
-        </div>
+        {loggedIn && (
+          <div style={{ margin: '20px', fontStyle: 'italic' }}>
+            "{quote}"
+          </div>
+        )}
 
         {loggedIn ? (
           <>
@@ -206,9 +206,7 @@ function App() {
               ))}
             </div>
           </>
-        ) : (
-          <p>Please log in to view and manage recipes.</p>
-        )}
+        ) : null}
       </header>
     </div>
   );
