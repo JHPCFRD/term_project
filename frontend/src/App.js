@@ -106,21 +106,20 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>RecipeShare</h1>
-
-        <Login 
-          onLogin={handleLogin}
-          onLogout={handleLogout}
-          isLoggedIn={loggedIn}
-        />
-
-        {loggedIn && (
-          <div style={{ margin: '20px', fontStyle: 'italic' }}>
-            "{quote}"
+        <div className="header-top">
+          <div className="header-content">
+            <h1>RecipeShare</h1>
+            {loggedIn && (
+              <button onClick={handleLogout} className="logout-button-top">
+                Logout
+              </button>
+            )}
           </div>
-        )}
+        </div>
 
-        {loggedIn ? (
+        {!loggedIn ? (
+          <Login onLogin={handleLogin} />
+        ) : (
           <>
             <div className="recipe-form-container">
               <h3>Add New Recipe</h3>
@@ -158,55 +157,72 @@ function App() {
               </form>
             </div>
 
+            <div className="quote-box">
+              "{quote}"
+            </div>
+
             <div className="recipes-container">
               <h2>Recipes</h2>
-              {recipes.map(recipe => (
-                <div key={recipe.id} className="recipe-card">
-                  {editingId === recipe.id ? (
-                    <div>
-                      <input
-                        type="text"
-                        value={editForm.title}
-                        onChange={(e) => setEditForm({...editForm, title: e.target.value})}
-                        className="form-input"
-                      />
-                      <input
-                        type="text"
-                        value={editForm.ingredients}
-                        onChange={(e) => setEditForm({...editForm, ingredients: e.target.value})}
-                        className="form-input"
-                      />
-                      <input
-                        type="text"
-                        value={editForm.instructions}
-                        onChange={(e) => setEditForm({...editForm, instructions: e.target.value})}
-                        className="form-input"
-                      />
-                      <button onClick={handleUpdate} className="submit-button">
-                        Save
-                      </button>
-                      <button onClick={() => setEditingId(null)}>
-                        Cancel
-                      </button>
-                    </div>
-                  ) : (
-                    <div>
-                      <h3>{recipe.title}</h3>
-                      <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
-                      <p><strong>Instructions:</strong> {recipe.instructions}</p>
-                      <button onClick={() => handleEdit(recipe)}>
-                        Edit
-                      </button>
-                      <button onClick={() => handleDelete(recipe.id)}>
-                        Delete
-                      </button>
-                    </div>
-                  )}
-                </div>
-              ))}
+              {recipes.length === 0 ? (
+                <p className="no-recipes">No recipes yet. Add one above!</p>
+              ) : (
+                recipes.map(recipe => (
+                  <div key={recipe.id} className="recipe-card">
+                    {editingId === recipe.id ? (
+                      <div className="edit-form">
+                        <input
+                          type="text"
+                          value={editForm.title}
+                          onChange={(e) => setEditForm({...editForm, title: e.target.value})}
+                          className="form-input"
+                          placeholder="Title"
+                        />
+                        <input
+                          type="text"
+                          value={editForm.ingredients}
+                          onChange={(e) => setEditForm({...editForm, ingredients: e.target.value})}
+                          className="form-input"
+                          placeholder="Ingredients"
+                        />
+                        <input
+                          type="text"
+                          value={editForm.instructions}
+                          onChange={(e) => setEditForm({...editForm, instructions: e.target.value})}
+                          className="form-input"
+                          placeholder="Instructions"
+                        />
+                        <div className="edit-buttons">
+                          <button onClick={handleUpdate} className="save-button">
+                            Save
+                          </button>
+                          <button onClick={() => setEditingId(null)} className="cancel-button">
+                            Cancel
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <div>
+                        <div className="recipe-header">
+                          <h3>{recipe.title}</h3>
+                          <div className="recipe-actions">
+                            <button onClick={() => handleEdit(recipe)} className="edit-button">
+                              Edit
+                            </button>
+                            <button onClick={() => handleDelete(recipe.id)} className="delete-button">
+                              Delete
+                            </button>
+                          </div>
+                        </div>
+                        <p><strong>Ingredients:</strong> {recipe.ingredients}</p>
+                        <p><strong>Instructions:</strong> {recipe.instructions}</p>
+                      </div>
+                    )}
+                  </div>
+                ))
+              )}
             </div>
           </>
-        ) : null}
+        )}
       </header>
     </div>
   );

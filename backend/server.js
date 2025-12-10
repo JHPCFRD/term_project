@@ -81,7 +81,7 @@ app.put('/recipes/:id', async (req, res) => {
 
 app.get('/api/quote', async (req, res) => {
   try {
-    const response = await fetch('https://api.quotable.io/random');
+    const response = await fetch('https://api.quotable.io/random?tags=cooking,food');
     
     if (!response.ok) {
       throw new Error(`API responded with ${response.status}`);

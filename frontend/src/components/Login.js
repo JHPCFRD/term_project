@@ -1,16 +1,6 @@
-/**
- * Login.js
- * Name: Jay Park
- * Date: 12/08/2025
- * CSC 372-01
- * 
- * Login component
- */
-
 function Login({ onLogin, onLogout, isLoggedIn }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Mock authentication - always succeeds
     onLogin();
   };
 
@@ -31,12 +21,12 @@ function Login({ onLogin, onLogout, isLoggedIn }) {
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="Username (any)"
+          placeholder="Username"
           className="form-input"
         />
         <input
           type="password"
-          placeholder="Password (any)"
+          placeholder="Password"
           className="form-input"
         />
         <button type="submit" className="submit-button">
